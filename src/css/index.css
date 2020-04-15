@@ -5,3 +5,8 @@
     height: 100px;
     background: red;
 }
+#box2 {
+    width: 200px;
+    height: 200px;
+    background-image: url('../assets/aaa.jpg');
+}

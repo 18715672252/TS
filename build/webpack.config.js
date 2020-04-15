@@ -8,6 +8,9 @@ module.exports = {
         filename: '[name].[hash].js'//所有文件都在dist文件夹下
         //filename: 'js/[name].[hash].js'//js文件在dist/js文件夹下 , html在dist文件夹下
     },
+    resolve:{
+        extensions: [".js", ".ts", ".tsx"]
+    },
     module:{
         rules:[
             {
@@ -24,6 +27,16 @@ module.exports = {
                 test:/\.css$/,
                 use:['style-loader','css-loader'],
                 exclude:/node_modules/
+            },
+            {
+                test:/\.(png|jpg|gif)$/,
+                use:[{
+                    loader:'url-loader',
+                    options:{
+                        limit:1024,
+                        esModule:false //解决用ejs语法引入路径时 ， 路径解析为src="[boject module]"
+                    }
+                }]
             }
         ]
     },
@@ -35,7 +48,7 @@ module.exports = {
     plugins:[
         new CleanWebpackPlugin(),
         new HtmlWeboackPlugin({
-            template:'./src/index.html'
+            template:path.resolve(__dirname,'../src/index.html')
         })
     ]
 }
