@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div id="app">
         <img :src="src" alt="">
         <div id="div" @click="goAbout"></div>
         <router-view></router-view>
@@ -9,6 +9,7 @@
 <script>
 let path = require('path')
     export default {
+        name:'App',
         data(){
             return {
                 src:''
